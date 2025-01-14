@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import Search from "./search";
 
+
 function WeatherApp() {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [weatherData, setWeatherData] = useState(null);
 
+  console.log("API Key:", import.meta.env.REACT_APP_API_KEY);
+
   async function fetchWeatherData(param) {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${param}&appid=6e690ede7c235b8a42163bbe7231162d`
+        `https://api.openweathermap.org/data/2.5/weather?q=${param}&appid=${import.meta.env.VITE_APP_API_KEY}`
       );
 
       const data = await response.json();
